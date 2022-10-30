@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 테마</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        #container {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+
+            position: relative;
+        }
+
+        .room {
+            width: 800px;
+            height: 600px;
+        }
+
+        .room_left {
+            width: 40px;
+            height: 40px;
+            
+            color: white;
+            position: absolute;
+
+            left: 5px;
+            top: 300px;
+        }
+
+        .room_right {
+            width: 40px;
+            height: 40px;
+            
+            position: absolute;
+
+            right: 5px;
+            top: 300px;
+        }
+
+        .front_door {
+            width: 140px;
+            height: 320px;
+            
+            position: absolute;
+            left: 330px;
+            bottom: 30px;
+        }
+
+        .front_destiny {
+            width: 250px;
+            height: 150px;
+            
+            position: absolute;
+            right: 70px;
+            top: 180px;
+        }
+
+        .front_in_the_box {
+            width: 250px;
+            height: 165px;
+            
+            position: absolute;
+            right: 80px;
+            top: 260px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img class="room" src="room.jpg">
+        <a href="main_theme_right.html"><img class="room_right" src="right_arrow.png"></a>
+        <a href="main_theme_left.html"><img class="room_left" src="left_arrow.png"></a>
+
+        <img class="front_door" src="locked_door.jpg">
+        <img class="front_destiny" src="destiny.jpg">
+        <img class="front_in_the_box" src="in_the_box.jpg">
+    </div>
+    <script>
+        const door = document.querySelector('.front_door');
+        door.addEventListener('click', () => {
+            let password = prompt("비밀번호 입력");
+            
+            if(password == '1770') {
+                alert("정답!! 탈출합니다!");
+                localStorage.removeItem('box');
+                localStorage.removeItem('lp');
+                localStorage.removeItem('music');
+                location.href='index.html';
+            }
+            else 
+                alert("틀렸습니다.");
+        });
+
+        if(localStorage.getItem('music')){
+            music_played = localStorage.getItem('music');
+        }
+
+        if(music_played) {
+            let destiny = new Audio('destiny.mp3');
+            destiny.play();
+        }
+        
+    </script>
+</body>
+</html>
+

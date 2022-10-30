@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 테마</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        #container {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+
+            position: relative;
+        }
+
+        .room {
+            width: 800px;
+            height: 600px;
+        }
+
+        .room_left {
+            width: 40px;
+            height: 40px;
+            
+            color: white;
+            position: absolute;
+
+            left: 5px;
+            top: 300px;
+        }
+
+        .room_right {
+            width: 40px;
+            height: 40px;
+            
+            position: absolute;
+
+            right: 5px;
+            top: 300px;
+        }
+        
+        .left_drawer {
+            width: 300px;
+            height: 200px;
+
+            position: absolute;
+            
+            bottom: -5px;
+            right: 150px;
+        }
+
+        .left_lp_player {
+            display: flex;
+            width: 80px;
+            height: 160px;
+
+            position: absolute;
+            
+            bottom: 160px;
+            right: 210px;
+        }
+
+        .left_lp_player.none {
+            display: none;
+        }
+
+        .left_lp_with_cd {
+            display: none;
+            width: 80px;
+            height: 160px;
+
+            position: absolute;
+            
+            bottom: 160px;
+            right: 210px;
+        }
+
+        .left_lp_with_cd.active {
+            display: flex;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img class="room" src="room.jpg">
+        <a href="main_theme_front.html"><img class="room_right" src="right_arrow.png"></a>
+        <a href="main_theme_back.html"><img class="room_left" src="left_arrow.png"></a>
+        <img class="left_drawer" src="drawer.jpg">
+        <img class="left_lp_player" src="lp_player.png">
+        <img class="left_lp_with_cd" src="lp_with_cd.png">
+    </div>
+
+    <script>
+        const lp = document.querySelector('.left_lp_player');
+        const lp_with_cd = document.querySelector('.left_lp_with_cd');
+        let has_lp;
+        let music_played;
+
+        if(localStorage.getItem('lp')){
+            has_lp = localStorage.getItem('lp');
+        }
+
+        if(localStorage.getItem('music')){
+            music_played = localStorage.getItem('music');
+        }
+
+        if(music_played) {
+            let destiny = new Audio('destiny.mp3');
+            destiny.play();
+            lp.classList.toggle('none');
+            lp_with_cd.classList.toggle('active');
+        }
+
+        if(has_lp) {
+            lp.addEventListener('click', () => {
+                alert("Lp판으로 음악을 재생합니다. 잠시 기다리세요.");
+                let destiny = new Audio('destiny.mp3');
+                destiny.play();
+                lp.classList.toggle('none');
+                lp_with_cd.classList.toggle('active');
+                localStorage.setItem('music','true');
+            });
+        }
+    </script>
+</body>
+</html>
+

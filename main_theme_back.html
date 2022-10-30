@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 테마</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        #container {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+
+            position: relative;
+        }
+
+        .room {
+            width: 800px;
+            height: 600px;
+        }
+
+        .room_left {
+            width: 40px;
+            height: 40px;
+            
+            color: white;
+            position: absolute;
+
+            left: 5px;
+            top: 300px;
+        }
+
+        .room_right {
+            width: 40px;
+            height: 40px;
+            
+            position: absolute;
+
+            right: 5px;
+            top: 300px;
+        }
+
+        .back_beethoven {
+            display: none;
+            width: 160px;
+            height: 200px;
+
+            position: absolute;
+            
+            bottom: 150px;
+            left: 200px;
+
+            border: 6px solid rgb(107, 37, 37);
+        }
+
+        .back_beethoven.beethoven_active {
+            display: flex;
+        }
+
+
+        .back_hint {
+            display: none;
+
+            width: 240px;
+            height: 126px;
+
+            position: absolute;
+            
+            top: 200px;
+            right: 100px;
+        }
+
+        .back_hint.hint_active {
+            display: flex;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img class="room" src="room.jpg">
+        <a href="main_theme_left.html"><img class="room_right" src="right_arrow.png"></a>
+        <a href="main_theme_right.html"><img class="room_left" src="left_arrow.png"></a>
+
+        <img class="back_beethoven" src="beethoven.jpg">
+        <img class="back_hint" src="hint.jpg">
+    </div>
+    <script>
+        
+        const beethoven = document.querySelector('.back_beethoven');
+        const hint = document.querySelector('.back_hint');
+        let music_played;
+
+        if(localStorage.getItem('music')){
+            music_played = localStorage.getItem('music');
+        }
+
+        if(music_played) {
+            beethoven.classList.toggle('beethoven_active');
+        }
+
+        if(music_played) {
+            let destiny = new Audio('destiny.mp3');
+            destiny.play();
+        }
+        
+        beethoven.addEventListener('click', () => {
+            let password = prompt("이 사람의 이름은?");
+
+            if(password == '베토벤' || password == 'beethoven') {
+                alert("정답입니다.");
+                hint.classList.toggle('hint_active');
+            }
+            else 
+                alert("틀렸습니다.");
+        });
+    </script>
+</body>
+</html>
+

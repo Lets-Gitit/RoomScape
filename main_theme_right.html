@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 테마</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        #container {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+
+            position: relative;
+        }
+
+        .room {
+            width: 800px;
+            height: 600px;
+        }
+
+        .room_left {
+            width: 40px;
+            height: 40px;
+            
+            color: white;
+            position: absolute;
+
+            left: 5px;
+            top: 300px;
+        }
+
+        .room_right {
+            width: 40px;
+            height: 40px;
+            
+            position: absolute;
+
+            right: 5px;
+            top: 300px;
+        }
+
+        .right_box {
+            display: flex;
+            width: 200px;
+            height: 132px;
+
+            position: absolute;
+
+            bottom: 3px;
+            left: 230px;
+        }
+
+        .right_box.none {
+            display: none;
+        }
+
+        .right_box_open {
+            display: none;
+            width: 220px;
+            height: 152px;
+
+            position: absolute;
+
+            bottom: 3px;
+            left: 230px;
+        }
+
+        .right_box_open.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img class="room" src="room.jpg">
+        <a href="main_theme_back.html"><img class="room_right" src="right_arrow.png"></a>
+        <a href="main_theme_front.html"><img class="room_left" src="left_arrow.png"></a>
+        <img class="right_box" src="box.jpg">
+        <img class="right_box_open" src="box_open.jpg">
+    </div>
+
+    <script>
+        const box = document.querySelector('.right_box');
+        const box_open = document.querySelector('.right_box_open');
+        let is_opened;
+        let music_played;
+
+        if(localStorage.getItem('box')){
+            is_opened = localStorage.getItem('box');
+        }
+
+        if(is_opened) {
+            box.classList.toggle('none');
+            box_open.classList.toggle('active');
+        }
+        
+        if(music_played) {
+            beethoven.classList.toggle('beethoven_active');
+        }
+
+        if(music_played) {
+            let destiny = new Audio('destiny.mp3');
+            destiny.play();
+        }
+
+        else {
+            box.addEventListener('click', () => {
+                alert("Lp판을 획득하였습니다.");
+                box.classList.toggle('none');
+                box_open.classList.toggle('active');
+                localStorage.setItem('box','true');
+                localStorage.setItem('lp','true');
+            });
+        }
+    </script>
+</body>
+</html>
+

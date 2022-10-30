@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=Jua&display=swap');</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>탈출하라! RoomScape</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: rgb(40, 52, 70);
+        }
+
+        a {
+            text-decoration: none;
+            color:black;
+        }
+
+        @media  screen and (min-width : 1250px) {
+            #container {
+                width: 980px;
+                margin: 40px auto;
+            }
+
+            .content_area {
+                width: 900px;
+                margin: 15px auto;
+            }
+            
+            .nav__menu {
+                display: flex;
+                justify-content: space-evenly;
+                width: 100%;
+            }
+
+            .nav__toogleBtn {
+                display: none;
+            }
+        }
+        
+        @media screen and (max-width : 1249px) {
+            #container {
+                width: 700px;
+                margin: 40px auto;
+            }
+
+            .content_area {
+                width: 620px;
+                margin: 15px auto;
+            }
+
+            .nav__toogleBtn {
+                display: block;
+            }
+
+            .nav__menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav__menu.toggle-active {
+                display: flex;
+                justify-content: center;
+            }
+            
+        }
+        
+        #header {
+            color: azure;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .header__title {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .header__slide {
+            width:300vw;
+            
+            margin-bottom: 8px;
+        }
+
+        .header__pic {
+            width:100vw;
+            float:left;
+            
+        }   
+
+        .header__pic img {
+            border: 8px solid rgb(146, 146, 165);
+            border-radius: 3px;
+            width: 40%;
+        }
+
+        /* 슬라이드 버튼 색상 변경 관련  */
+        .slide_menu a {
+            color: rgb(95, 95, 95);
+        }
+
+        .slide_menu a.button_select_active {
+            color: azure;
+        }
+        
+        .menu_link {
+            padding: 3px;
+        }
+        /* ---------------------------- */
+
+        #nav {
+            background-color: white;
+            border-bottom: 1px solid gray;    
+            
+            align-items: center;
+            display: flex;
+
+            padding: 8px 12px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav__logo {
+            text-align: center;
+            position: relative;
+        }
+
+        .nav__logo img {
+            width: 40px;
+        }
+
+        .nav__menu {
+            font-size: 20px;
+            list-style-type: none;          
+            padding-left: 0; 
+        }
+
+        .nav__menu li {
+            padding: 8px 12px;
+            
+        }
+
+        .nav__menu li a:hover {
+            padding-bottom:5px ;
+            border-bottom: 2px solid rgb(40, 52, 70);
+        }
+
+        .nav__toogleBtn {
+            position: absolute;
+            right: 15px;
+            top: 17px;
+            color: black;
+        }
+
+        #content {
+            background-color:white;
+            height: 1200px;
+
+            border: 3px solid gray;
+            border-radius: 15px;
+            margin: 17px 0px;
+
+            scroll-behavior: smooth;
+        }
+
+        .content__inner {
+            padding: 8px;
+
+            margin-top: 10px;
+            margin-left: 20px;  
+
+            font-size: 18px;
+        }
+
+        .content__how_to_use {
+            height: 140px;
+        }
+        
+        .content__how_to_pic {
+            height: 400px;
+        }
+
+        .content_padding {
+            padding-left: 8px;
+            padding-bottom: 5px;
+        }
+
+        .intro_pic {
+            width:550px;
+
+            margin: 5px 0;
+            border: 2px solid gray;
+        }
+        
+        #footer {
+            height: 40px;
+
+            border-radius: 15px;
+            margin: 20px 0px;
+            
+            color:azure;
+            text-align: center;  
+        }        
+
+        .footer__icon {
+            margin-top: 7px;
+            padding: 0 7px;
+        }
+
+</style>
+</head>
+<body>
+    <div id="nav">
+        <div class="nav__toogleBtn"><i class="fa fa-bars"></i></i></div>
+        <div class="nav__logo">
+            <a href="index.html"><img src="logo.png"></a>
+            <a href="index.html">RoomScape</a>
+        </div>
+        <ul class="nav__menu">
+            <li><a href="theme_info.html">테마 체험</a></li>
+            <li><a href="customer_service.html">고객 지원</a></li>
+        </ul>
+    </div>
+        <div id="header">
+            <div class="header__title">
+                <h1>이번 달의 신규 탈출 테마</h1>
+                <h4>사진을 누르면 테마 설명으로 이동합니다!</h4>
+            </div>
+                <div class="header__slide">
+                    <div class="header__pic">
+                        <a href="theme_info.html#main_theme"><img src="header_room.jpg"></a>
+                    </div>
+                    <div class="header__pic">
+                        <a href="theme_info.html#tom_jerry"><img src="header_tomjerry.jpg"></a>
+                    </div>
+                    <div class="header__pic">
+                        <a href="theme_info.html#alice_wonderland"><img src="header_alice.jpg"></a>
+                    </div>
+                </div>
+                <div class="slide_menu">
+                    <a href="#" class="btn1 menu_link"><i class="fa fa-window-minimize fa-2x"></i></a>
+                    <a href="#" class="btn2 menu_link"><i class="fa fa-window-minimize fa-2x"></i></a>
+                    <a href="#" class="btn3 menu_link"><i class="fa fa-window-minimize fa-2x"></i></a>
+                </div>
+        </div>
+    <div id="container">
+        <div id="content"> 
+            <div class="content_area">
+                <h1 class = "content_padding">이용 방법</h1>
+                <hr>
+                <div class="content__inner">
+                    <div class="content__how_to_use">
+                        <h2>1. 테마 소개 페이지 이동</h2>
+                        <img class="intro_pic" src="main_nav.jpg">
+                        <p>테마 체험을 클릭하면 모든 테마 소개 페이지로 이동합니다.</p>
+                        <hr>
+                    </div>
+                    <div class="content__how_to_use">
+                        <h2>2. 테마 선택</h2>
+                        <img class="intro_pic" src="theme_nav.jpg">
+                        <p>네비게이션에서 원하는 테마를 선택하면 해당 테마 소개위치로 이동합니다.</p>
+                        <hr>
+                    </div>
+                    <div class="content__how_to_pic">
+                        <h2>3. 테마 실행</h2>
+                        <img class="intro_pic" src="main_theme_intro.jpg">
+                        <p>원하는 테마를 선택하면 해당 테마 타이틀 옆 바로가기 버튼을 누릅니다.</p>
+                        <hr>
+                    </div>
+                    <div class="content__how_to_pic">
+                        <h2>4. 방 탈출!</h2>
+                        <img class="intro_pic" src="main_theme_play.jpg">
+                        <p>선택한 테마의 방에서 탈출하세요!</p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <p><small><div id="time_now"></div></small></p>
+            <p><small>&copy; Copyright <span id="year">year</span>, 이찬영 RoomScape Corporation</small></p><br>
+            <p><small><address><i class="fa fa-home"></i> 경기도 수원시 장안구 연무동 **-**</address></small></p>
+            <p><small><i class="fa fa-at"></i> cksdudnov8@naver.com</small></p>
+            <p><small><i class="fa fa-phone"></i> 010-3782-60**</small></p>
+            <p><small><i class="fa fa-github fa-2x footer__icon"></i>
+                <i class="fa fa-instagram fa-2x footer__icon"></i></i></small></p><br>
+        </div>
+    </div>
+    <script>
+        // footer 년도 구하기
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        // 반응형 웹 구현을 위한 토글 버튼
+        const toggleBtn = document.querySelector('.nav__toogleBtn');
+        const menu = document.querySelector('.nav__menu');
+
+        toggleBtn.addEventListener('mouseup', () => {
+            menu.classList.toggle('toggle-active');
+        });
+
+        // 메인 페이지 사진 슬라이드
+        document.querySelector('.btn1').addEventListener('click', function() {
+            document.querySelector('.header__slide').style.transform = 'translate(0vw)';
+        });
+
+        document.querySelector('.btn2').addEventListener('click', function() {
+            document.querySelector('.header__slide').style.transform = 'translate(-100vw)';
+        });
+
+        document.querySelector('.btn3').addEventListener('click', function() {
+            document.querySelector('.header__slide').style.transform = 'translate(-200vw)';
+        });
+
+        // 사진 슬라이드 아래 버튼 색상
+        let currentMenu;
+        let menuLinks = document.querySelectorAll('.menu_link');
+
+        function clickMenuHandler() {
+            if(currentMenu) {
+                currentMenu.classList.remove('button_select_active');
+            }
+            this.classList.add('button_select_active');
+            currentMenu = this;
+        }
+
+        for(let i = 0; i < menuLinks.length; i++) {
+            menuLinks[i].addEventListener('click', clickMenuHandler);
+        }
+
+        // jQuery 웹 사이트에 입장한 시간 출력하기
+        $(document).ready(() => {
+            let now = new Date();
+            const date = ("입장 시간 : " + now.getFullYear() + "년 " + (now.getMonth()+1) + "월 " + now.getDate() + "일 " + now.getHours() + "시 " + now.getMinutes() + "분");
+            $("#time_now").text(date);
+        });
+    </script>
+</body>
+</html>

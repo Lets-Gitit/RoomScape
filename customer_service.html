@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=Jua&display=swap');</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>탈출하라! RoomScape</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: rgb(40, 52, 70);
+        }
+
+        a {
+            text-decoration: none;
+            color:black;
+        }
+
+        @media  screen and (min-width : 1250px) {
+            #container {
+                width: 980px;
+                margin: 40px auto;
+            }
+            
+            #header {
+                width: 930px;
+                margin: 0 auto;
+                margin-bottom: 30px;
+            }
+            
+            .content_area {
+                width: 900px;
+                margin: 15px auto;
+            }
+
+            .nav__menu {
+                display: flex;
+                justify-content: space-evenly;
+                width: 100%;
+            }
+
+            .nav__toogleBtn {
+                display: none;
+            }
+        }
+        
+        @media screen and (max-width : 1249px) {
+            #container {
+                width: 700px;
+                margin: 40px auto;
+            }
+
+            #header {
+                width: 650px;
+                margin: 0 auto;
+                margin-bottom: 30px;
+            }
+
+            .content_area {
+                width: 620px;
+                margin: 15px auto;
+            }
+
+            .nav__toogleBtn {
+                display: block;
+            }
+
+            .nav__menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav__menu.active {
+                display: flex;
+                justify-content: center;
+            }
+            
+        }
+        
+        #header {
+            background-color:white;
+            height: 160px;
+
+            border: 3px solid gray;
+            border-radius: 15px;    
+            
+            position: relative;
+        }
+
+        .header__title {
+            margin-top: 55px;
+        }
+        .header__logo {
+            float: left;
+            margin-top: 5px;
+            margin-left: 30px;
+        }
+        
+        .header__logo img{
+            margin: 0;
+            width: 150px;
+            height: 150px;
+        }
+
+        .header_icon {
+            width: 130px;
+            height: 108px;
+
+            position: absolute;
+            right: 50px;
+            top: 20px;
+        }
+        
+        #nav {
+            background-color: white;
+            border-bottom: 1px solid gray;    
+            
+            align-items: center;
+            display: flex;
+
+            padding: 8px 12px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav__logo {
+            text-align: center;
+            position: relative;
+        }
+
+        .nav__logo img {
+            width: 40px;
+        }
+
+        .nav__menu {
+            font-size: 20px;
+            list-style-type: none;          
+            padding-left: 0; 
+        }
+
+        .nav__menu li {
+            padding: 8px 12px;
+            
+        }
+
+        .nav__menu li a:hover {
+            border-bottom: 3px solid rgb(40, 52, 70);
+            
+        }
+
+        .nav__toogleBtn {
+            position: absolute;
+            right: 15px;
+            top: 17px;
+            color: black;
+        }
+
+        #content {
+            background-color:white;
+            height: 1000px;
+
+            border: 3px solid gray;
+            border-radius: 15px;
+            margin: 17px 0px;
+
+            scroll-behavior: smooth;
+        }
+
+        .content_padding {
+            padding-left: 8px;
+            padding-bottom: 5px;
+        }
+
+        #notice {
+            margin-bottom: 50px;
+        }
+
+        .notice__inner {
+            width:550px;
+            padding: 8px;
+            border-bottom: 1px solid gray;
+
+            margin-top: 10px;
+            margin-left: 20px;  
+        }
+
+        .notice__inner i {
+            padding-right: 10px;
+
+            color: rgb(55, 129, 226);
+            float: left;
+        }
+
+        .notice__inner small {
+            color:firebrick;
+        }
+
+        #qna {
+            height: 800px;
+        }
+
+        #qna div, input, textarea, select {
+            box-sizing: border-box;
+        }
+
+        .qna-form {
+            width: 600px;  
+        }
+
+        .form-white {
+            background-color: white;
+            border: 10px solid rgb(146, 146, 165);
+            border-radius: 5px;
+            padding: 10px 50px 50px 20px;
+            width: 600px;
+            margin: 15px auto; 
+        }
+
+        .form-white h1 {
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+
+        .form-label {
+            display: block;
+            margin: 10px 0px 10px 0px;
+        }
+
+        .form-input {
+            padding: 10px;
+            font-size: 20px;
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .form-Email,
+        .form-Content {
+            width: 100%;
+            padding: 7px;
+        }
+
+        .form-Fname {
+            width: 50%;
+            float: left;
+            padding: 7px;
+        }
+
+        .form-Lname {
+            width: 50%;
+            float: left;
+            padding: 7px;
+        }
+
+        .form-button {
+            padding: 10px;
+            font-size: 18px;
+            display: block;
+            margin-left: auto;
+        }
+
+        #footer {
+            height: 40px;
+
+            border-radius: 15px;
+            margin: 20px 0px;
+            
+            color:azure;
+            text-align: center;
+        }        
+
+        #footer p > img.phone {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer__icon {
+            margin-top: 7px;
+            padding: 0 7px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <div class="nav__toogleBtn"><i class="fa fa-bars"></i></i></div>
+        <div class="nav__logo">
+            <a href="index.html"><img src="logo.png"></a>
+            <a href="index.html">RoomScape</a>
+        </div>
+        <ul class="nav__menu">
+            <li><a href="#notice">공지 사항</a></li>
+            <li><a href="#qna">Q&A</a></li>
+        </ul>
+    </div>
+    <div id="container">
+        <div id="header">
+            <div class="header__logo"><img src="logo.png"></div>
+            <div class="header__title"><h1>고객 지원</h1></div>
+            <img class="header_icon" src="feather_pen.jpg">
+        </div>
+        <div id="content"> 
+            <div class="content_area">
+                <div id="notice">
+                    <h1 class="content_padding">공지사항</h1>
+                    <hr>
+                    <div class="notice__inner">
+                        <i class="fa fa-volume-up fa-2x"></i>
+                        <h3>5월 신규 테마가 추가되었습니다!&nbsp;<small>(최신)</small></h3>
+                    </div>
+                    <div class="notice__inner">
+                        <i class="fa fa-volume-up fa-2x"></i>
+                        <h3>랭킹 시스템이 추가되었습니다. 탈출 시간으로 경쟁해보세요!</h3>
+                    </div>
+                    <div class="notice__inner">
+                        <i class="fa fa-volume-up fa-2x"></i>
+                        <h3>RoomScape의 베타 서비스가 시작됩니다.</h3>
+                    </div>
+                </div>
+                <div id="qna">
+                    <h1 class="content_padding">Q&A</h1>
+                    <hr>
+                    <div class="qna-form">
+                        <div class="form-white">
+                            <form>
+                                <div class="form-type">
+                                    <label for="type" class="form-label">Type / 문의 유형</label>
+                                    <select name="type">
+                                        <option value="new_theme">신규 테마 건의</option>
+                                        <option value="how_to_use">이용 문의</option>
+                                        <option value="else">기타 문의</option>
+                                    </select>
+                                </div>
+                                <div class="form-Email">
+                                    <label for="email" class="form-label">E-mail / 이메일</label>
+                                    <input type="email" id="email" class="form-input" name="email" placeholder="이메일을 입력하세요." />
+                                </div>
+                                <div class="form-Fname">
+                                    <label for="FirstName" class="form-label">First Name / 이름</label>
+                                    <input type="text" id="FirstName" class="form-input" name="FirstName" placeholder="이름을 입력하세요." />
+                                </div>
+                                <div class="form-Lname">
+                                    <label for="LastName" class="form-label">Last Name / 성</label>
+                                    <input type="text" id="LastName" class="form-input" name="LastName" placeholder="성을 입력하세요." />
+                                </div>
+                                    <div style="clear: both"></div>
+                                    <div class="form-Content">
+                                    <label for="Message" class="form-label">Message / 메시지</label>
+                                    <textarea id="Message" class="form-input"></textarea>
+                                </div>
+                                    <button type="submit" class="form-button">입력</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <p><small><div id="time_now"></div></small></p>
+            <p><small>&copy; Copyright <span id="year">year</span>, 이찬영 RoomScape Corporation</small></p><br>
+            <p><small><address><i class="fa fa-home"></i> 경기도 수원시 장안구 연무동 **-**</address></small></p>
+            <p><small><i class="fa fa-at"></i> cksdudnov8@naver.com</small></p>
+            <p><small><i class="fa fa-phone"></i> 010-3782-60**</small></p>
+            <p><small><i class="fa fa-github fa-2x footer__icon"></i>
+            <i class="fa fa-instagram fa-2x footer__icon"></i></i></small></p><br>
+        </div>
+    </div>
+    <script>
+        // footer 년도 구하기
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        // 반응형 웹 구현을 위한 토글 버튼
+        const toggleBtn = document.querySelector('.nav__toogleBtn');
+        const menu = document.querySelector('.nav__menu');
+
+        toggleBtn.addEventListener('mouseup', () => {
+            menu.classList.toggle('active');
+        });
+
+        // jQuery 웹 사이트에 입장한 시간 출력하기
+        $(document).ready(() => {
+            let now = new Date();
+            const date = ("입장 시간 : " + now.getFullYear() + "년 " + (now.getMonth()+1) + "월 " + now.getDate() + "일 " + now.getHours() + "시 " + now.getMinutes() + "분");
+            $("#time_now").text(date);
+        });
+    </script>
+</body>
+</html>
