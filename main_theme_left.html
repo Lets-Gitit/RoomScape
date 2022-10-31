@@ -93,12 +93,12 @@
 </head>
 <body>
     <div id="container">
-        <img class="room" src="room.jpg">
-        <a href="main_theme_front.html"><img class="room_right" src="right_arrow.png"></a>
-        <a href="main_theme_back.html"><img class="room_left" src="left_arrow.png"></a>
-        <img class="left_drawer" src="drawer.jpg">
-        <img class="left_lp_player" src="lp_player.png">
-        <img class="left_lp_with_cd" src="lp_with_cd.png">
+        <img class="room" src="img\escapePage\room.jpg">
+        <a href="main_theme_front.html"><img class="room_right" src="img\escapePage\right_arrow.png"></a>
+        <a href="main_theme_back.html"><img class="room_left" src="img\escapePage\left_arrow.png"></a>
+        <img class="left_drawer" src="img\escapePage\drawer.jpg">
+        <img class="left_lp_player" src="img\escapePage\lp_player.png">
+        <img class="left_lp_with_cd" src="img\escapePage\lp_with_cd.png">
     </div>
 
     <script>
@@ -116,7 +116,7 @@
         }
 
         if(music_played) {
-            let destiny = new Audio('destiny.mp3');
+            let destiny = new Audio('sounds\destiny.mp3');
             destiny.play();
             lp.classList.toggle('none');
             lp_with_cd.classList.toggle('active');
@@ -125,7 +125,7 @@
         if(has_lp) {
             lp.addEventListener('click', () => {
                 alert("Lp판으로 음악을 재생합니다. 잠시 기다리세요.");
-                let destiny = new Audio('destiny.mp3');
+                let destiny = new Audio('sounds\destiny.mp3');
                 destiny.play();
                 lp.classList.toggle('none');
                 lp_with_cd.classList.toggle('active');

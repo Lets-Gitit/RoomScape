@@ -79,13 +79,13 @@
 </head>
 <body>
     <div id="container">
-        <img class="room" src="room.jpg">
-        <a href="main_theme_right.html"><img class="room_right" src="right_arrow.png"></a>
-        <a href="main_theme_left.html"><img class="room_left" src="left_arrow.png"></a>
+        <img class="room" src="img\escapePage\room.jpg">
+        <a href="main_theme_right.html"><img class="room_right" src="img\escapePage\right_arrow.png"></a>
+        <a href="main_theme_left.html"><img class="room_left" src="img\escapePage\left_arrow.png"></a>
 
-        <img class="front_door" src="locked_door.jpg">
-        <img class="front_destiny" src="destiny.jpg">
-        <img class="front_in_the_box" src="in_the_box.jpg">
+        <img class="front_door" src="img\escapePage\locked_door.jpg">
+        <img class="front_destiny" src="img\escapePage\destiny.jpg">
+        <img class="front_in_the_box" src="img\escapePage\in_the_box.jpg">
     </div>
     <script>
         const door = document.querySelector('.front_door');
@@ -108,7 +108,7 @@
         }
 
         if(music_played) {
-            let destiny = new Audio('destiny.mp3');
+            let destiny = new Audio('sounds\destiny.mp3');
             destiny.play();
         }
         
